@@ -49,9 +49,10 @@ Enemy.prototype.checkCollisions = function() {
         playerX + playerWidth > enemyX &&
         playerY < enemyY + enemyHeight &&
         playerHeight + playerY > enemyY) {
+            player.render();
             player.init();
             console.log("sorrry, you need to try again");
-    } 
+    } ;
 }
 
 // This class requires an update(), render() and
@@ -63,10 +64,13 @@ var Player = function() {
 
 //player update when player win
 Player.prototype.update = function() {
-    if (this.y < 0) {
+    var self = this;
+    if (self.y < 0) {
+        setTimeout(function() {
+            self.init();
+        }, 800);
         console.log("congratulatton,you win the game!");
-        this.init();
-    }
+    };
 }
 
 // here is set the player in init position
@@ -84,18 +88,18 @@ Player.prototype.render = function() {
 Player.prototype.handleInput = function(keyType) {
     switch(keyType) {
         case "left":
-            player.x -= 101;
+            this.x -= 101;
             break;
         case "right":
-            player.x += 101;
+            this.x += 101;
             break;
         case "up":
-            player.y -= 82;
+            this.y -= 82;
             break;
         case "down":
-            player.y += 82;
+            this.y += 82;
             break;  
-    } 
+    };
     //to keep the play in canva
     if (player.x < -2) {
         player.x = -2;
@@ -106,14 +110,14 @@ Player.prototype.handleInput = function(keyType) {
         player.y = -8;
     }else if (player.y > 402) {
        player.y = 402;
-    }
+    };
 }
 
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 var allEnemies = [];
 for (var i = 0; i < 4; i++) {
-  allEnemies.push(new Enemy());
+    allEnemies.push(new Enemy());
 }
 var player = new Player();
 

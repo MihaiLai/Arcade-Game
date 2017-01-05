@@ -7,4 +7,6 @@ you need to download this repository and unzip it,then open the index.html with 
 1. use keyboard up down left right to move character.
 2. when your character touch bug,game over.
 
+## User
+this repository is free for everyone, and I hope you can enjoy it. 
 
