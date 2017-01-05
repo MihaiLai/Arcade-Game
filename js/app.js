@@ -1,5 +1,5 @@
 // Enemies our player must avoid
-var enemyY = [60, 140, 230];
+var enemyHeigh = [60, 140, 230];
 var Enemy = function() {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
@@ -7,9 +7,9 @@ var Enemy = function() {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.x = -101 * (Math.random() * 10 + 5);
-    this.y = enemyY[Math.round(Math.random() * 2)];
+    this.y = enemyHeigh[Math.round(Math.random() * 2)];
     this.speed = 0;
-    this.sprite = 'images/enemy-bug.png';
+    this.sprite = "images/enemy-bug.png";
 };
 
 // Update the enemy's position, required method for game
@@ -30,7 +30,7 @@ Enemy.prototype.render = function() {
     //reset it's position in random.
     if (this.x > 505) {
         this.x = -101 * (Math.random() * 10);
-        this.y = enemyY[Math.round(Math.random() * 2)];
+        this.y = enemyHeigh[Math.round(Math.random() * 2)];
     }
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
@@ -52,15 +52,15 @@ Enemy.prototype.checkCollisions = function() {
             player.render();
             player.init();
             console.log("sorrry, you need to try again");
-    } ;
-}
+    }
+};
 
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function() {
     this.init();
     this.sprite = 'images/char-boy.png';
-}
+};
 
 //player update when player win
 Player.prototype.update = function() {
@@ -70,19 +70,19 @@ Player.prototype.update = function() {
             self.init();
         }, 800);
         console.log("congratulatton,you win the game!");
-    };
-}
+    }
+};
 
 // here is set the player in init position
 Player.prototype.init = function() {
     this.x = 200;
     this.y = 320;
-}
+};
 
 //render
 Player.prototype.render = function() {
    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 //handleInput
 Player.prototype.handleInput = function(keyType) {
@@ -94,24 +94,24 @@ Player.prototype.handleInput = function(keyType) {
             this.x += 101;
             break;
         case "up":
-            this.y -= 82;
+            this.y -= 83;
             break;
         case "down":
-            this.y += 82;
+            this.y += 83;
             break;  
-    };
-    //to keep the play in canva
-    if (player.x < -2) {
-        player.x = -2;
-    }else if (player.x > 402) {
-        player.x = 402;
     }
-    if (player.y < -8) {
-        player.y = -8;
-    }else if (player.y > 402) {
-       player.y = 402;
-    };
-}
+    //to keep the play in canva
+    if (this.x < -2) {
+        this.x = -2;
+    }else if (this.x > 402) {
+        this.x = 402;
+    }
+    if (this.y < -8) {
+        this.y = -8;
+    }else if (this.y > 402) {
+       this.y = 402;
+    }
+};
 
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
@@ -123,12 +123,12 @@ var player = new Player();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
-document.addEventListener('keyup', function(e) {
+document.addEventListener("keyup", function(e) {
     var allowedKeys = {
-        37: 'left',
-        38: 'up',
-        39: 'right',
-        40: 'down'
+        37: "left",
+        38: "up",
+        39: "right",
+        40: "down"
     };
     player.handleInput(allowedKeys[e.keyCode]);
 });
